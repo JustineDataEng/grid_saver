@@ -44,7 +44,7 @@ st.markdown("""
 # ============================================================
 @st.cache_data
 def load_data():
-    df = pd.read_csv('df = pd.read_csv('https://drive.google.com/uc?export=download&id=10NCU3HEZC2KDiqHCii6E1XuRa9G0Y9zg')')
+    df = pd.read_csv('https://drive.google.com/uc?export=download&id=10NCU3HEZC2KDiqHCii6E1XuRa9G0Y9zg')
     df['Datetime (UTC)'] = pd.to_datetime(df['Datetime (UTC)'])
     df = df.sort_values('Datetime (UTC)').reset_index(drop=True)
 
