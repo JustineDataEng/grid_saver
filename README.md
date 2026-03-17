@@ -81,7 +81,7 @@ grid-saver/
 | Electricity Maps US-TEX-ERCO 2025 | 8,761 hourly | Sense Layer |
 | PJM_Load_hourly.csv | 32,897 hourly | Predict Layer |
 | PJME_hourly.csv | 145,367 hourly | Validation |
-| Pecan Street Austin 15-min | ~680K rows | Act Layer |
+| Pecan Street Austin 15-min | 680K rows | Act Layer |
 | Ghana Energy Commission 2025 | 2000-2024 | Context |
 
 ---
