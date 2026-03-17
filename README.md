@@ -47,7 +47,7 @@ Interactive prototype demonstrating:
 - HVAC share of total load: 56.3% (Texas hot climate)
 - Original peak demand: 105.71 kW
 - Grid Saver optimized: 103.41 kW
-- Peak reduction: 2.2% — Grid Stabilized
+- Peak reduction: 2.2% (Grid Stabilized)
 - Worst day validated: 2018-08-28
 
 ---
