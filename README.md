@@ -8,9 +8,9 @@
 
 ## What is Grid Saver?
 
-Power grids do not fail due to lack of electricity — they fail when demand spikes faster than system response. Grid Saver prevents these failures by predicting peak vulnerability windows and coordinating small, distributed reductions in residential energy use before the grid reaches critical stress.
+Power grids do not fail due to lack of electricity, they fail when demand spikes faster than system response. Grid Saver prevents these failures by predicting peak vulnerability windows and coordinating small, distributed reductions in residential energy use before the grid reaches critical stress.
 
-Validated using ERCOT (Texas) grid data — the same system that failed during the 2021 Texas Power Crisis, leaving millions without power.
+Validated using ERCOT (Texas) grid data, the same system that failed during the 2021 Texas Power Crisis, leaving millions without power.
 
 ---
 
@@ -69,8 +69,7 @@ grid-saver/
 ├── gridsaver_month1.py             # Colab analysis notebook
 ├── requirements.txt                # Dependencies
 ├── README.md                       # This file
-└── data/
-    └── snapshots_US-TEX-ERCO.csv  # ERCOT sense layer data
+
 ```
 
 ---
