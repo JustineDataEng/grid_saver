@@ -107,8 +107,8 @@ Because power grids operate within narrow reserve margins, even small, coordinat
 - **Analysis:** Google Colab
 - **Code:** GitHub
 - **Deployment:** Streamlit Community Cloud
-- **Production path:** Azure Functions + Azure ML (Phase 3 after national selection)
+- **Production path:** Azure Functions + Azure ML
 
 ---
 
-*Built for Red Bull Basement 2026 World Final - Silicon Valley*
+*Built for Red Bull Basement 2026*
