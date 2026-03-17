@@ -18,9 +18,9 @@ Validated using ERCOT (Texas) grid data, the same system that failed during the 
 
 | Layer | Function | Dataset | Status |
 |-------|----------|---------|--------|
-| SENSE | Detect grid stress signals | Electricity Maps US-TEX-ERCO 2025 | ✅ Month 1 Complete |
-| PREDICT | Forecast vulnerability windows 24hr ahead | PJM 145,367 hourly records | ⏳ Month 2 |
-| ACT | Simulate coordinated 3-5% HVAC load reduction | Pecan Street Austin 15-min | ✅ Month 1 Preview Complete |
+| SENSE | Detect grid stress signals | Electricity Maps US-TEX-ERCO 2025 | ✅ ACTIVE|
+| PREDICT | Forecast vulnerability windows 24hr ahead | PJM 145,367 hourly records | ⏳ IN BUILD |
+| ACT | Simulate coordinated 3-5% HVAC load reduction | Pecan Street Austin 15-min | ⏳ UPCOMING |
 
 ---
 
@@ -35,7 +35,7 @@ Interactive prototype demonstrating:
 
 ---
 
-## Month 1 Results - Confirmed
+## SENSE Layer - Active
 
 **SENSE Layer (ERCOT US-TEX-ERCO 2025)**
 - 8,760 hourly records analysed
@@ -53,7 +53,7 @@ Interactive prototype demonstrating:
 ---
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/grid-saver
+git clone https://github.com/JustineAdzormado/grid-saver
 cd grid-saver
 pip install -r requirements.txt
 streamlit run app.py
@@ -65,8 +65,8 @@ streamlit run app.py
 
 ```
 grid-saver/
-├── app.py                          # Streamlit dashboard
-├── gridsaver_month1.py             # Colab analysis notebook
+├── gridsaver_app.py               # Streamlit dashboard
+├── gridsaver.ipynb                 # Colab analysis notebook
 ├── requirements.txt                # Dependencies
 ├── README.md                       # This file
 
@@ -93,7 +93,7 @@ Because power grids operate within narrow reserve margins, even small, coordinat
 **Reserve Margin Formula:**
 - Peak demand: 9,200 MW
 - Grid Saver 4% reduction: 368 MW removed
-- New demand: 8,832 MW — grid stabilizes
+- New demand: 8,832 MW (grid stabilizes)
 
 **Scaling (proven on real Pecan Street data):**
 - 0.0920 kW reduction per home (25 Austin TX homes validated)
