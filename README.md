@@ -65,7 +65,7 @@ streamlit run app.py
 
 ```
 grid-saver/
-├── gridsaver_app.py               # Streamlit dashboard
+├── grid_saver_app.py               # Streamlit dashboard
 ├── gridsaver.ipynb                 # Colab analysis notebook
 ├── requirements.txt                # Dependencies
 ├── README.md                       # This file
