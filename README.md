@@ -73,7 +73,7 @@ Interactive prototype demonstrating:
 ## Running Locally
 
 ```bash
-git clone https://github.com/JustineAdzormado/grid-saver
+git clone https://github.com/JustineDataEng/grid_saver
 cd grid-saver
 pip install -r requirements.txt
 streamlit run app.py
@@ -131,7 +131,7 @@ Because power grids operate within narrow reserve margins, even small, coordinat
 ## Tech Stack
 
 - **Analysis:** Google Colab
-- **Code:** GitHub ([github.com/JustineAdzormado/grid-saver](https://github.com/JustineDataEng/grid_saver))
+- **Code:** GitHub (https://github.com/JustineDataEng/grid_saver)
 - **Deployment:** Streamlit Community Cloud
 - **Production path:** Azure Functions + Azure ML
 
