@@ -8,9 +8,9 @@
 
 ## What is Grid Saver?
 
-Power grids do not fail due to lack of electricity — they fail when demand spikes faster than system response. Grid Saver prevents these failures by predicting peak vulnerability windows and coordinating small, distributed reductions in residential energy use before the grid reaches critical stress.
+Power grids do not fail due to lack of electricity, they fail when demand spikes faster than system response. Grid Saver prevents these failures by predicting peak vulnerability windows and coordinating small, distributed reductions in residential energy use before the grid reaches critical stress.
 
-Validated using ERCOT (Texas) grid data — the same system that failed during the 2021 Texas Power Crisis, leaving millions without power.
+Validated using ERCOT (Texas) grid data, the same system that failed during the 2021 Texas Power Crisis, leaving millions without power.
 
 ---
 
@@ -40,32 +40,32 @@ Interactive prototype demonstrating:
 
 ---
 
-## Results — All Three Phases Confirmed
+## Results - All Three Phases Confirmed
 
-**SENSE Layer — Phase 1 (ERCOT US-TEX-ERCO 2025)**
+**SENSE Layer - Phase 1 (ERCOT US-TEX-ERCO 2025)**
 - 8,760 hourly records analysed
 - 1,316 vulnerability windows detected (15% of year)
 - Peak stress month: August | Peak stress hour: 01:00 UTC
 
-**PREDICT Layer — Phase 2 (PJM Interconnection)**
+**PREDICT Layer - Phase 2 (PJM Interconnection)**
 - XGBoost model trained on 32,897 hourly PJM records
 - Validated on 145,367 PJME records (Eastern region)
-- Recall: 91.6% — catches 9 out of 10 real grid stress events
-- ROC-AUC: 0.977 — true 24-hour ahead forecasting
+- Recall: 91.6% (catches 9 out of 10 real grid stress events)
+- ROC-AUC: 0.977 (true 24-hour ahead forecasting)
 - Decision threshold: 0.4 (tuned for safety-first recall)
 
-**ACT Layer — Phase 3 (Pecan Street Austin 2018)**
+**ACT Layer - Phase 3 (Pecan Street Austin 2018)**
 - 25 real Austin TX households, full year 2018
 - HVAC share of total load: 56.3% (Texas hot climate)
 - Original peak demand: 105.71 kW
 - Grid Saver optimized: 103.41 kW
-- Peak reduction: 2.2% — Grid Stabilized
+- Peak reduction: 2.2% (Grid Stabilized)
 - Worst day validated: 2018-08-28
 
-**Full SPA Integration — Phase 3**
+**Full SPA Integration - Phase 3**
 - Sense triggers: 1,316 hours (15% of year)
 - Predict triggers: 1,659 hours (18.9%)
-- SPA Actions triggered: 154 hours — dual-confirmation precision
+- SPA Actions triggered: 154 hours (dual-confirmation precision)
 - Grid Saver only acts when BOTH layers independently confirm risk
 
 ---
@@ -102,7 +102,7 @@ grid-saver/
 | Electricity Maps US-TEX-ERCO 2025 | 8,761 hourly | Sense Layer |
 | PJM_Load_hourly.csv | 32,897 hourly | Predict Layer |
 | PJME_hourly.csv | 145,367 hourly | Validation |
-| Pecan Street Austin 15-min | ~680K rows | Act Layer |
+| Pecan Street Austin 15-min | 680K rows | Act Layer |
 | Ghana Energy Commission 2025 | 2000-2024 | Context |
 
 ---
@@ -114,7 +114,7 @@ Because power grids operate within narrow reserve margins, even small, coordinat
 **Reserve Margin Formula:**
 - Peak demand: 9,200 MW
 - Grid Saver 4% reduction: 368 MW removed
-- New demand: 8,832 MW — grid stabilizes
+- New demand: 8,832 MW (grid stabilizes)
 
 **Scaling (proven on real Pecan Street data):**
 - 0.0920 kW reduction per home (25 Austin TX homes validated)
@@ -124,7 +124,7 @@ Because power grids operate within narrow reserve margins, even small, coordinat
 **SPA Dual-Confirmation Logic:**
 - Grid Saver does not trigger on every stress signal
 - Both Sense AND Predict must independently confirm risk
-- 154 confirmed actions out of 8,760 hours — surgical precision, not blunt response
+- 154 confirmed actions out of 8,760 hours (surgical precision, not blunt response)
 
 ---
 
@@ -133,8 +133,8 @@ Because power grids operate within narrow reserve margins, even small, coordinat
 - **Analysis:** Google Colab
 - **Code:** GitHub — github.com/JustineAdzormado/grid-saver
 - **Deployment:** Streamlit Community Cloud
-- **Production path:** Azure Functions + Azure ML (after national selection)
+- **Production path:** Azure Functions + Azure ML
 
 ---
 
-*Built for Red Bull Basement 2026 World Final - Silicon Valley*
+*Built for Red Bull Basement 2026*
