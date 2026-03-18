@@ -58,7 +58,7 @@ Interactive prototype demonstrating:
 git clone https://github.com/justineadzormado/grid-saver
 cd grid-saver
 pip install -r requirements.txt
-streamlit run grid_saver_app.py
+streamlit run app.py
 ```
 
 ---
