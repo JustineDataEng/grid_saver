@@ -127,7 +127,7 @@ with st.sidebar.expander("Dataset Information"):
     **Variables:** Carbon intensity, CFE%, timestamps
     **Academic access:** Cite Electricity Maps in publications
     **Note:** Demand simulated from carbon intensity.
-    Real forecasting will be added in Phase 2 via PJM datasets.
+    Real forecasting will added in Phase 2 via PJM datasets.
     """)
 
 st.sidebar.markdown("---")
@@ -502,11 +502,11 @@ arch = [
     (col_b, "🧠", "PREDICT", "#1A6B2E", "#2ECC71",
      "Forecast vulnerability windows", "XGBoost + LSTM models",
      "PJM 145,367 hourly records", "24-hour advance warning",
-     "⏳ IN BUILD - Phase 2", "#F39C12"),
+     "✅ ACTIVE - Phase 2", "#F39C12"),
     (col_c, "⚡", "ACT", "#7B1A1A", "#E74C3C",
      "Coordinate HVAC load reduction", "3-5% surgical precision",
      "Pecan Street 680K records", "Human-override safety protocol",
-     "⏳ UPCOMING - Phase 3", "#F39C12"),
+     "⏳ IN BUILD - Phase 3", "#F39C12"),
 ]
 
 for col, icon, title, bg, color, l1, l2, l3, l4, status, sc in arch:
