@@ -39,7 +39,8 @@ st.markdown("""
 # LOAD DATA
 # NOTE: Demand is simulated using carbon intensity as a proxy
 # for demonstration purposes.
-# Real demand forecasting will be implemented using PJM load datasets.
+# Real demand forecasting will be implemented in Phase 2
+#using PJM load datasets.
 # ============================================================
 @st.cache_data
 def load_data():
@@ -126,7 +127,7 @@ with st.sidebar.expander("Dataset Information"):
     **Variables:** Carbon intensity, CFE%, timestamps
     **Academic access:** Cite Electricity Maps in publications
     **Note:** Demand simulated from carbon intensity.
-    Real forecasting will be added via PJM datasets.
+    Real forecasting will be added in Phase 2 via PJM datasets.
     """)
 
 st.sidebar.markdown("---")
@@ -497,15 +498,15 @@ arch = [
     (col_a, "👁️", "SENSE", "#1B4F8C", "#4A9EFF",
      "Detect grid stress signals", "Carbon intensity monitoring",
      "Electricity Maps US-TEX-ERCO", "8,761 hourly records",
-     "✅ ACTIVE", "#2ECC71"),
+     "✅ ACTIVE - Phase 1 ", "#2ECC71"),
     (col_b, "🧠", "PREDICT", "#1A6B2E", "#2ECC71",
      "Forecast vulnerability windows", "XGBoost + LSTM models",
      "PJM 145,367 hourly records", "24-hour advance warning",
-     "⏳ IN BUILD", "#F39C12"),
+     "⏳ IN BUILD - Phase 2", "#F39C12"),
     (col_c, "⚡", "ACT", "#7B1A1A", "#E74C3C",
      "Coordinate HVAC load reduction", "3-5% surgical precision",
      "Pecan Street 680K records", "Human-override safety protocol",
-     "⏳ UPCOMING", "#F39C12"),
+     "⏳ UPCOMING Phase 3", "#F39C12"),
 ]
 
 for col, icon, title, bg, color, l1, l2, l3, l4, status, sc in arch:
@@ -538,7 +539,7 @@ st.markdown("""
     <p style='color: #555; margin: 5px 0 0 0; font-size: 0.75rem;'>
         Data: Electricity Maps US-TEX-ERCO 2025 (Academic Access) |
         Demand simulated from carbon intensity for prototype demonstration |
-        Real forecasting via PJM datasets
+        Real forecasting via PJM datasets in Phase 2
     </p>
 </div>
 """, unsafe_allow_html=True)
