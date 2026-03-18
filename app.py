@@ -505,7 +505,7 @@ arch = [
      "Electricity Maps US-TEX-ERCO", "8,761 hourly records",
      "✅ ACTIVE - Phase 1 ", "#2ECC71"),
     (col_b, "🧠", "PREDICT", "#1A6B2E", "#2ECC71",
-     "Forecast vulnerability windows", "XGBoost model - 91.6% Recall",
+     "Forecast vulnerability windows", "XGBoost model | 91.6% Recall",
      "PJM 145,367 hourly records", "24-hour advance warning",
      "✅ ACTIVE - Phase 2 Complete", "#2ECC71"),
     (col_c, "⚡", "ACT", "#7B1A1A", "#E74C3C",
