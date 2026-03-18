@@ -74,7 +74,7 @@ Interactive prototype demonstrating:
 
 ```bash
 git clone https://github.com/JustineDataEng/grid_saver
-cd grid-saver
+cd grid_saver
 pip install -r requirements.txt
 streamlit run app.py
 ```
