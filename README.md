@@ -20,7 +20,7 @@ Validated using ERCOT (Texas) grid data, the same system that failed during the 
 |-------|----------|---------|--------|
 | SENSE | Detect grid stress signals | Electricity Maps US-TEX-ERCO 2025 | ✅ Phase 1 Complete |
 | PREDICT | Forecast vulnerability windows 24hr ahead | PJM 145,367 hourly records | ✅ Phase 2 Complete |
-| ACT | Simulate coordinated 3-5% HVAC load reduction | Pecan Street Austin 15-min | ✅ Phase 1 Preview Complete |
+| ACT | Simulate coordinated 3-5% HVAC load reduction | Pecan Street Austin 15-min | ✅ Phase 1 Complete |
 
 ---
 
@@ -67,7 +67,7 @@ streamlit run grid_saver_app.py
 
 ```
 grid-saver/
-├── grid_saver_app.py               # Streamlit dashboard
+├── app.py               # Streamlit dashboard
 ├── gridsaver_phase1.ipynb          # Colab analysis notebook
 ├── requirements.txt                # Dependencies
 ├── README.md                       # This file
