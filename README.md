@@ -131,7 +131,7 @@ Because power grids operate within narrow reserve margins, even small, coordinat
 ## Tech Stack
 
 - **Analysis:** Google Colab
-- **Code:** GitHub (https://github.com/JustineDataEng/grid_saver)
+- **Code:** GitHub https://github.com/JustineDataEng/grid_saver
 - **Deployment:** Streamlit Community Cloud
 - **Production path:** Azure Functions + Azure ML
 
