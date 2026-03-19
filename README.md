@@ -2,13 +2,13 @@
 ### Adaptive Grid Intelligence Platform
 **Red Bull Basement 2026 | Justine Adzormado**
 
-> Preventing blackouts through predictive, distributed energy coordination.
+> Preventing blackouts through predictive, distributed energy coordination and early vulnerability detection.
 
 ---
 
 ## What is Grid Saver?
 
-Power grids do not fail due to lack of electricity, they fail when demand spikes faster than system response. Grid Saver prevents these failures by predicting peak vulnerability windows and coordinating small, distributed reductions in residential energy use before the grid reaches critical stress.
+Power grids do not fail due to lack of electricity, they fail when demand spikes faster than system response. Grid Saver prevents these failures by forecasting peak vulnerability windows and coordinating small, distributed reductions in residential energy use before the grid reaches critical stress.
 
 Validated using ERCOT (Texas) grid data, the same system that failed during the 2021 Texas Power Crisis, leaving millions without power.
 
@@ -35,6 +35,8 @@ Interactive prototype demonstrating:
 - Impact at Scale slider
 - AI Decision Explanation
 - Full SPA dual-confirmation logic
+> ⚠️ Note: HVAC load is scaled for visualization clarity.
+> Real-world impact validated using Pecan Street dataset.
 
 👉 **[https://gridsaver.streamlit.app](https://gridsaver.streamlit.app)**
 
@@ -45,12 +47,12 @@ Interactive prototype demonstrating:
 **SENSE Layer - Phase 1 (ERCOT US-TEX-ERCO 2025)**
 - 8,760 hourly records analysed
 - 1,316 vulnerability windows detected (15% of year)
-- Peak stress month: August | Peak stress hour: 01:00 UTC
+- Peak vulnerability month: August | Peak vulnerability hour: 01:00 UTC
 
 **PREDICT Layer - Phase 2 (PJM Interconnection)**
 - XGBoost model trained on 32,897 hourly PJM records
 - Validated on 145,367 PJME records (Eastern region)
-- Recall: 91.6% (catches 9 out of 10 real grid stress events)
+- Recall: 91.6% (catches 9 out of 10 real grid vulnerability events)
 - ROC-AUC: 0.977 (true 24-hour ahead forecasting)
 - Decision threshold: 0.4 (tuned for safety-first recall)
 
@@ -84,9 +86,9 @@ streamlit run app.py
 ## Repository Structure
 
 ```
-grid-saver/
+grid_saver/
 ├── app.py                    # Streamlit dashboard - Full SPA Integration
-├── gridsaver_phase1.ipynb    # Sense Layer - ERCOT stress detection
+├── gridsaver_phase1.ipynb    # Sense Layer - ERCOT vulnerability detection
 ├── gridsaver_phase2.ipynb    # Predict Layer - PJM XGBoost forecasting
 ├── gridsaver_phase3.ipynb    # Full SPA Integration pipeline
 ├── requirements.txt          # Dependencies
@@ -117,12 +119,12 @@ Because power grids operate within narrow reserve margins, even small, coordinat
 - New demand: 8,832 MW (grid stabilizes)
 
 **Scaling (proven on real Pecan Street data):**
-- 0.0920 kW reduction per home (25 Austin TX homes validated)
-- 1,000,000 homes = 92 MW removed
-- Grid-scale stabilisation confirmed
+- 0.0920 kW reduction per home
+- 1,000,000 homes = 92 MW removed (baseline scenario)
+- Higher reductions achievable under coordinated peak conditions
 
 **SPA Dual-Confirmation Logic:**
-- Grid Saver does not trigger on every stress signal
+- Grid Saver does not trigger on every vulnerability signal
 - Both Sense AND Predict must independently confirm risk
 - 154 confirmed actions out of 8,760 hours (surgical precision, not blunt response)
 
