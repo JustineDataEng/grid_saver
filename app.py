@@ -137,6 +137,8 @@ with st.sidebar.expander("Dataset Information"):
     **Phase 1:** Sense Layer - ERCOT stress detection
     **Phase 2:** Predict Layer - PJM XGBoost 24hr forecast
     **Phase 3:** Act Layer - Pecan Street HVAC simulation
+    **Note:** HVAC load scaled for grid-level visualization.
+    Real-world reduction validated on Pecan Street data.
     """)
 
 st.sidebar.markdown("---")
@@ -423,6 +425,11 @@ fig_sim.update_layout(
 fig_sim.update_xaxes(gridcolor='#30363D', color='#888')
 fig_sim.update_yaxes(gridcolor='#30363D', color='#888')
 st.plotly_chart(fig_sim, use_container_width=True)
+st.caption(
+    "HVAC load is scaled for visualization clarity. "
+    "Real-world impact validated using Pecan Street dataset (Phase 3): "
+    "2.2% peak reduction across 25 Austin TX households."
+)
 
 # ============================================================
 # UPGRADE 2: IMPACT AT SCALE
