@@ -129,14 +129,23 @@ st.sidebar.markdown("---")
 with st.sidebar.expander("Dataset Information"):
     st.write("""
     **Source:** Electricity Maps US-TEX-ERCO 2025
+
     **Records:** 8,761 hourly observations
+    
     **Region:** Texas ERCOT grid
+    
     **Variables:** Carbon intensity, CFE%, timestamps
+    
     **Academic access:** Cite Electricity Maps in publications
+    
     **Phase 1:** Sense Layer - ERCOT stress detection
+    
     **Phase 2:** Predict Layer - PJM XGBoost 24hr forecast
+    
     **Phase 3:** Act Layer - Pecan Street HVAC simulation
+    
     **Note:** HVAC load scaled for grid-level visualization.
+    
     Real-world reduction validated on Pecan Street data.
     """)
 
