@@ -84,14 +84,13 @@ def load_data():
         (carbon_max - carbon_min) * 20000 + 55000
     )
 
-    # HVAC load proxy: 13% of total grid demand
-    # Based on national average (residential 30% of grid, HVAC 40-50% of residential)
-    # Validated against real data: Pecan Street Austin TX dataset (Phase 3)
-    # showed 56.3% HVAC share in Texas hot climate - national proxy used here
-    # for MW-scale simulation consistency
-    # Note: Units are converted to MW for grid-scale situational awareness 
-    # as per Phase 2 forecasting logic and Phase 3 scale-up analysis.
-    df['hvac_load_mw'] = df['simulated_demand_mw'] * 0.13
+    # HVAC load proxy: 25% of total grid demand
+    # Real-world HVAC share validated at 56.3% in Texas hot climate
+    # using Pecan Street Austin TX dataset (Phase 3, 25 households, 2018)
+    # Scaled to 25% here for MW-scale grid simulation and visualization clarity
+    # Full validation results available in gridsaver_phase3.ipynb
+
+    df['hvac_load_mw'] = df['simulated_demand_mw'] * 0.25
     return df, VULNERABILITY_THRESHOLD, carbon_col, cfe_col
 
 with st.spinner("Loading grid data..."):
