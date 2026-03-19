@@ -423,9 +423,21 @@ fig_sim.update_layout(
 )
 fig_sim.update_xaxes(gridcolor='#30363D', color='#888')
 fig_sim.update_yaxes(gridcolor='#30363D', color='#888')
+
+y_min = min(day_data['optimized_demand_mw'].min(),
+            day_data['simulated_demand_mw'].min())
+y_max = max(day_data['optimized_demand_mw'].max(),
+            day_data['simulated_demand_mw'].max())
+
+fig_sim.update_yaxes(
+    range=[y_min * 0.98, y_max * 1.01],
+    row=1, col=1
+)
+
 st.plotly_chart(fig_sim, use_container_width=True)
 st.caption(
-    "HVAC load is scaled for visualization clarity. "
+    "Y-axis zoomed to highlight peak demand reduction impact. "
+    "HVAC load scaled for visualization clarity. "
     "Real-world impact validated using Pecan Street dataset (Phase 3): "
     "2.2% peak reduction across 25 Austin TX households."
 )
