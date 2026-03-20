@@ -138,7 +138,7 @@ with st.sidebar.expander("Dataset Information"):
     
     **Academic access:** Cite Electricity Maps in publications
     
-    **Phase 1:** Sense Layer - ERCOT stress detection
+    **Phase 1:** Sense Layer - ERCOT vulnerability detection
     
     **Phase 2:** Predict Layer - PJM XGBoost 24hr forecast
     
@@ -541,7 +541,7 @@ col_a, col_b, col_c = st.columns(3)
 
 arch = [
     (col_a, "👁️", "SENSE", "#1B4F8C", "#4A9EFF",
-     "Detect grid stress signals", "Carbon intensity monitoring",
+     "Detect grid vulnerability signals", "Carbon intensity monitoring",
      "Electricity Maps US-TEX-ERCO", "8,761 hourly records",
      "✅ ACTIVE - Phase 1 ", "#2ECC71"),
     (col_b, "🧠", "PREDICT", "#1A6B2E", "#2ECC71",
