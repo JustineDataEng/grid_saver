@@ -87,12 +87,12 @@ streamlit run app.py
 
 ```
 grid_saver/
+├── README.md                 # This file
 ├── app.py                    # Streamlit dashboard - Full SPA Integration
 ├── gridsaver_phase1.ipynb    # Sense Layer - ERCOT vulnerability detection
 ├── gridsaver_phase2.ipynb    # Predict Layer - PJM XGBoost forecasting
 ├── gridsaver_phase3.ipynb    # Full SPA Integration pipeline
-├── requirements.txt          # Dependencies
-└── README.md                 # This file
+└── requirements.txt          # Dependencies
 ```
 
 ---
