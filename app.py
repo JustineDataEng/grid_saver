@@ -466,8 +466,8 @@ st.caption(
     "2.2% peak reduction across 25 Austin TX households.\n"
     "Grid Saver reduces peak demand by coordinating distributed HVAC loads during high-risk grid conditions."
 )
-st.caption("Reduction bars may not be visible at MW scale. Total load reduced across intervention windows: " + f"{df_view['grid_saver_reduction_mw'].sum():,.1f} MW.")
-
+label = "Cumulative Load Reduced" if not live_mode else "Total Load Reduced (24h)"
+st.caption(f"Reduction bars may not be visible at MW scale. {label} across intervention windows: {df_view['grid_saver_reduction_mw'].sum():,.1f} MW.")
 if peak_event_original == peak_event_optimized:
     st.info(
         "No peak reduction at worst hour: Grid Saver interventions occurred outside "
