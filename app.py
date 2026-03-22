@@ -461,7 +461,7 @@ st.caption(
     "Y-axis zoomed to highlight peak demand reduction impact. "
     "HVAC load scaled for visualization clarity. "
     "Real-world impact validated using Pecan Street dataset (Phase 3): "
-    "2.2% peak reduction across 25 Austin TX households.\n\n"
+    "2.2% peak reduction across 25 Austin TX households.\n"
     "Grid Saver reduces peak demand by coordinating distributed HVAC loads during high-risk grid conditions."
 )
 st.caption("Reduction bars may not be visible at MW scale. Total load reduced across intervention windows: " + f"{df_view['grid_saver_reduction_mw'].sum():,.1f} MW.")
