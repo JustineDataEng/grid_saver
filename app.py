@@ -61,27 +61,29 @@ def load_data():
     carbon_min = df[carbon_col].min()
     cfe_max = df[cfe_col].max()
 
+    carbon_denom = (carbon_max - carbon_min) if (carbon_max - carbon_min) != 0 else 1
+    cfe_denom = cfe_max if cfe_max != 0 else 1
     df['vulnerability_score'] = (
-        ((df[carbon_col] - carbon_min) / (carbon_max - carbon_min) * 70) +
-        ((1 - df[cfe_col] / cfe_max) * 30)
+        ((df[carbon_col] - carbon_min) / carbon_denom * 70) +
+        ((1 - df[cfe_col] / cfe_denom) * 30)
     ).round(1)
 
     VULNERABILITY_THRESHOLD = df['vulnerability_score'].quantile(0.85)
     df['vulnerability_event'] = df['vulnerability_score'] >= VULNERABILITY_THRESHOLD
 
     def classify_status(score):
-        if score < 40:
-            return 'STABLE'
-        elif score < 70:
+        if score >= VULNERABILITY_THRESHOLD:
+            return 'CRITICAL'
+        elif score >= VULNERABILITY_THRESHOLD * 0.7:
             return 'WARNING'
         else:
-            return 'CRITICAL'
+            return 'STABLE'
 
     df['grid_status'] = df['vulnerability_score'].apply(classify_status)
 
     df['simulated_demand_mw'] = (
         (df[carbon_col] - carbon_min) /
-        (carbon_max - carbon_min) * 20000 + 55000
+        carbon_denom * 20000 + 55000
     )
 
     # HVAC load proxy: 25% of total grid demand
@@ -114,7 +116,9 @@ if live_mode:
 
 st.sidebar.markdown("---")
 
-month_options = ['All Year'] + list(df['month_name'].unique())
+month_order = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+months_present = [m for m in month_order if m in df['month_name'].unique()]
+month_options = ['All Year'] + months_present
 selected_month = st.sidebar.selectbox("Select Month", month_options)
 
 reduction_rate_input = st.sidebar.slider(
@@ -159,15 +163,21 @@ st.sidebar.markdown("*Red Bull Basement 2026*")
 # FILTER DATA
 # ============================================================
 if live_mode:
-    df_view = df.tail(24).copy()
+    df_view = df[df['Datetime (UTC)'] >= df['Datetime (UTC)'].max() - pd.Timedelta(hours=24)].copy()
 elif selected_month != 'All Year':
     df_view = df[df['month_name'] == selected_month].copy()
 else:
-    df_view = df.copy()
+    df_view = df.copy()    
 
 # SPA dual-confirmation logic (aligned with Notebook 3)
+if df_view.empty:
+    st.warning("No data available for selected filters.")
+    st.stop()
+
 df_view['sense_triggered'] = df_view['vulnerability_event']
-df_view['predict_triggered'] = df_view['vulnerability_event']  # proxy: same signal as sense for dashboard
+# 3-hour forward lookahead proxy — simulates predictive detection ahead of vulnerability window
+df_view['predict_triggered'] = df_view['vulnerability_score'].shift(-3) >= VULNERABILITY_THRESHOLD
+df_view['predict_triggered'] = df_view['predict_triggered'].fillna(False)
 df_view['spa_action_triggered'] = (
     df_view['sense_triggered'] & df_view['predict_triggered']
 )
@@ -222,11 +232,12 @@ current_carbon = df_view[carbon_col].iloc[-1]
 current_cfe = df_view[cfe_col].iloc[-1]
 vulnerable_pct = df_view['vulnerability_event'].mean() * 100
 vulnerable_hours = int(df_view['vulnerability_event'].sum())
+interventions = int(df_view['spa_action_triggered'].sum())
 
 status_color = {'STABLE': '#2ECC71', 'WARNING': '#F39C12', 'CRITICAL': '#E74C3C'}
 status_icon = {'STABLE': '🟢', 'WARNING': '🟡', 'CRITICAL': '🔴'}
 
-col1, col2, col3, col4, col5, col6 = st.columns(6)
+col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
 cards = [
     (col1, status_icon[current_status], current_status, "Grid Status", status_color[current_status]),
     (col2, f"{current_score:.0f}", "/100", "Vulnerability Score", "white"),
@@ -234,6 +245,7 @@ cards = [
     (col4, f"{current_cfe:.1f}%", "CFE", "Carbon-Free Energy", "#2ECC71"),
     (col5, f"{vulnerable_pct:.1f}%", "of period", "Time at Risk", "#F39C12"),
     (col6, f"{vulnerable_hours}", "hours", "Vulnerability Hours", "#4A9EFF"),
+    (col7, f"{interventions}", "events", "Interventions Triggered", "#9B59B6"),
 ]
 for col, val, sub, label, color in cards:
     with col:
@@ -251,17 +263,17 @@ st.markdown("<br>", unsafe_allow_html=True)
 # DECISION_THRESHOLD = 0.4 in Phase 2 notebook
 # App uses VULNERABILITY_THRESHOLD (top 15%) as equivalent trigger
 # Both prioritise recall over precision for safety-critical detection
-if current_score >= VULNERABILITY_THRESHOLD:
+if current_status == 'CRITICAL':
     action_color = "#E74C3C"
     action_icon_str = "🔴"
     action_title = "CRITICAL - Immediate Action Required"
     action_text = f"Reduce residential HVAC load by {reduction_rate_input}% across coordination zones"
     expected = f"Expected peak reduction: {reduction_rate_input * 0.9:.1f}% | Grid stabilization: HIGH confidence"
-elif current_score >= VULNERABILITY_THRESHOLD * 0.7:
+elif current_status == 'WARNING':
     action_color = "#F39C12"
     action_icon_str = "🟡"
     action_title = "WARNING - Prepare for Intervention"
-    action_text = f"Pre-stage HVAC coordination. Prepare {reduction_rate_input}% reduction if stress increases"
+    action_text = f"Pre-stage HVAC coordination. Initiate {reduction_rate_input}% reduction if conditions escalate"
     expected = f"Monitoring window: Next 2-4 hours | Pre-emptive coordination recommended"
 else:
     action_color = "#2ECC71"
@@ -375,7 +387,7 @@ sim_cards = [
     (col_m1, f"{peak_event_original:,.0f} MW", "Original Peak", "#E74C3C"),
     (col_m2, f"{peak_event_optimized:,.0f} MW", "After Grid Saver", "#2ECC71"),
     (col_m3, f"{pct_event_reduction:.1f}%", "Peak Reduction", "#4A9EFF"),
-    (col_m4, f"{mw_event_saved:,.0f} MW", "MW Removed", "#F39C12"),
+    (col_m4, f"{mw_event_saved:,.0f} MW", "Peak Load Shed (MW)", "#F39C12"),
 ]
 for col, val, label, color in sim_cards:
     with col:
@@ -457,7 +469,9 @@ st.markdown("## Impact at Scale")
 st.markdown("*Drag the slider to see how Grid Saver scales from neighbourhood to city to national grid.*")
 
 homes = st.slider("Number of Homes Coordinated", 1000, 1000000, 100000, step=1000)
-scaled_reduction = homes * 0.2 * (reduction_rate_input / 100)
+# 0.0920 kW per home derived from Pecan Street Phase 3 HVAC analysis
+# (25 Austin TX households, 2018 full year, 4% reduction rate validated)
+scaled_reduction = homes * 0.0920 * (reduction_rate_input / 4)
 
 col_s1, col_s2, col_s3, col_s4 = st.columns(4)
 grid_impact = "City-scale" if homes < 100000 else "Regional-scale" if homes < 500000 else "National-scale"
@@ -516,7 +530,7 @@ if st.button("🧠 Explain Grid Decision"):
                 (threshold: {VULNERABILITY_THRESHOLD:.0f})</li>
             <li>Carbon Intensity: <strong style='color: #FF6B6B;'>{current_carbon:.0f} gCO2eq/kWh</strong></li>
             <li>Carbon-Free Energy: <strong style='color: #2ECC71;'>{current_cfe:.1f}%</strong></li>
-            <li>Vulnerability Level: <strong style='color: {action_color};'>{vulnerability_level}</strong></li>
+            <li>Risk Level: <strong style='color: {action_color};'>{vulnerability_level}</strong></li>
         </ul>
         <p style='color: #CCC; margin: 10px 0 5px 0;'>
             <strong>Recommended Action:</strong>
@@ -526,7 +540,7 @@ if st.button("🧠 Explain Grid Decision"):
         <p style='color: #555; margin: 15px 0 0 0; font-size: 0.8rem;'>
             Reserve Margin: A {reduction_rate_input}% HVAC reduction across {homes:,} homes
             removes approximately {scaled_reduction:,.1f} kW from peak demand,
-            bringing the grid back within safe operating bounds.
+            contributing to restoring the grid toward safe operating bounds.
         </p>
     </div>
     """, unsafe_allow_html=True)
@@ -549,7 +563,7 @@ arch = [
      "PJM 145,367 hourly records", "24-hour advance warning",
      "✅ ACTIVE - Phase 2 Complete", "#2ECC71"),
     (col_c, "⚡", "ACT", "#7B1A1A", "#E74C3C",
-     "Simulate coordinated HVAC load reduction", "3-5% surgical precision",
+     "Coordinate residential HVAC load reduction", "3-5% surgical precision ",
      "Pecan Street 680K records", "Human-override safety protocol",
      "✅ ACTIVE - Phase 3 Complete", "#2ECC71"),
 ]
@@ -584,7 +598,8 @@ st.markdown("""
     <p style='color: #555; margin: 5px 0 0 0; font-size: 0.75rem;'>
         Data: Electricity Maps US-TEX-ERCO 2025 (Academic Access) |
         Demand simulated from carbon intensity (see chart note) |
-        Full SPA logic validated using cross-dataset simulation across Phase 1, 2 and 3
+        Full SPA logic validated using cross-dataset simulation across Phase 1, 2 and 3|
+        Prototype validated using cross-dataset triangulation: ERCOT (Sense), PJM (Predict), Pecan Street (Act)
     </p>
 </div>
 """, unsafe_allow_html=True)
