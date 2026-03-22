@@ -105,7 +105,7 @@ st.sidebar.markdown("**Adaptive Grid Intelligence Platform**")
 st.sidebar.markdown("---")
 
 # UPGRADE 1: Live Grid Mode Toggle
-live_mode = st.sidebar.toggle("⚡ Live Grid Mode", value=False)
+live_mode = st.sidebar.toggle("Live Grid Mode", value=False)
 if live_mode:
     st.sidebar.markdown(
         "<p style='color:#2ECC71; font-size:0.8rem;'>Showing last 24 hours</p>",
@@ -273,7 +273,7 @@ else:
 # ============================================================
 # SECTION 2 - DEMAND GRAPH
 # ============================================================
-st.markdown("## 📈 Grid Demand and Vulnerability Windows")
+st.markdown("## Grid Demand and Vulnerability Windows")
 st.caption("⚠️ Demand values are simulated from carbon intensity for prototype demonstration purposes. Phase 2 Predict Layer uses real PJM load data (145,367 records).")
 
 color_map = {'STABLE': '#2ECC71', 'WARNING': '#F39C12', 'CRITICAL': '#E74C3C'}
@@ -313,7 +313,7 @@ st.plotly_chart(fig_demand, use_container_width=True)
 # ============================================================
 # SECTION 3 - PEAK RISK TIMELINE
 # ============================================================
-st.markdown("## ⏰ Peak Risk Timeline")
+st.markdown("## Peak Risk Timeline")
 col_left, col_right = st.columns(2)
 
 with col_left:
@@ -359,7 +359,7 @@ with col_right:
 # ============================================================
 # SECTION 4 - SIMULATION
 # ============================================================
-st.markdown("## 🎯 Grid Saver Load Reduction Simulation")
+st.markdown("## Grid Saver Load Reduction Simulation")
 
 daily_max = df_view.groupby('date')['vulnerability_score'].max()
 worst_day = daily_max.idxmax()
@@ -453,7 +453,7 @@ st.caption(
 # ============================================================
 # UPGRADE 2: IMPACT AT SCALE
 # ============================================================
-st.markdown("## 🌍 Impact at Scale")
+st.markdown("## Impact at Scale")
 st.markdown("*Drag the slider to see how Grid Saver scales from neighbourhood to city to national grid.*")
 
 homes = st.slider("Number of Homes Coordinated", 1000, 1000000, 100000, step=1000)
@@ -486,7 +486,7 @@ st.markdown("<br>", unsafe_allow_html=True)
 # ============================================================
 # SECTION 5 - RECOMMENDED ACTION + EXPLAIN BUTTON
 # ============================================================
-st.markdown("## 🤖 Recommended Grid Action")
+st.markdown("## Recommended Grid Action")
 
 st.markdown(f"""
 <div style='background: #161B22; border-left: 5px solid {action_color};
@@ -536,7 +536,7 @@ st.markdown("<br>", unsafe_allow_html=True)
 # ============================================================
 # SECTION 6 - SYSTEM ARCHITECTURE
 # ============================================================
-st.markdown("## 🏗️ System Architecture")
+st.markdown("## System Architecture")
 col_a, col_b, col_c = st.columns(3)
 
 arch = [
