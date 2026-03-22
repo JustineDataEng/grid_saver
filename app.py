@@ -352,24 +352,26 @@ with col_left:
     st.plotly_chart(fig_hour, use_container_width=True)
 
 with col_right:
-    monthly_stress = df_view.groupby('month_name')['vulnerability_score'].mean().round(1)
-    month_order = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
-    monthly_stress = monthly_stress.reindex([m for m in month_order if m in monthly_stress.index])
-    bar_colors_m = ['#E74C3C' if s >= VULNERABILITY_THRESHOLD else
-                    '#F39C12' if s >= VULNERABILITY_THRESHOLD * 0.7 else
-                    '#2ECC71' for s in monthly_stress.values]
-    fig_month = go.Figure(go.Bar(
-        x=monthly_stress.index, y=monthly_stress.values, marker_color=bar_colors_m,
-    ))
-    fig_month.update_layout(
-        paper_bgcolor='#161B22', plot_bgcolor='#161B22', font=dict(color='white'),
-        title=dict(text='Avg Stress by Month', font=dict(color='white', size=13)),
-        xaxis=dict(gridcolor='#30363D', color='#888', title='Month'),
-        yaxis=dict(gridcolor='#30363D', color='#888', title='Vulnerability Score'),
-        height=300, margin=dict(t=50, b=30),
-    )
-    st.plotly_chart(fig_month, use_container_width=True)
-
+    if live_mode:
+        st.info("Monthly trend requires full-year data. Switch to Analysis Mode to view seasonal patterns.")
+    else:
+        monthly_stress = df_view.groupby('month_name')['vulnerability_score'].mean().round(1)
+        month_order = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+        monthly_stress = monthly_stress.reindex([m for m in month_order if m in monthly_stress.index])
+        bar_colors_m = ['#E74C3C' if s >= VULNERABILITY_THRESHOLD else
+                        '#F39C12' if s >= VULNERABILITY_THRESHOLD * 0.7 else
+                        '#2ECC71' for s in monthly_stress.values]
+        fig_month = go.Figure(go.Bar(
+            x=monthly_stress.index, y=monthly_stress.values, marker_color=bar_colors_m,
+        ))
+        fig_month.update_layout(
+            paper_bgcolor='#161B22', plot_bgcolor='#161B22', font=dict(color='white'),
+            title=dict(text='Avg Stress by Month', font=dict(color='white', size=13)),
+            xaxis=dict(gridcolor='#30363D', color='#888', title='Month'),
+            yaxis=dict(gridcolor='#30363D', color='#888', title='Vulnerability Score'),
+            height=300, margin=dict(t=50, b=30),
+        )
+        st.plotly_chart(fig_month, use_container_width=True)
 # ============================================================
 # SECTION 4 - SIMULATION
 # ============================================================
