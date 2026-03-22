@@ -466,7 +466,7 @@ st.caption(
 if peak_event_original == peak_event_optimized:
     st.info(
         "No peak reduction at worst hour: Grid Saver interventions occurred outside "
-        "the peak demand window. This is by design — the system only acts when "
+        "the peak demand window. This is by design, the system only acts when "
         "dual-confirmation risk is detected, not at every demand spike."
     )
 
