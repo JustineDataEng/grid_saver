@@ -307,13 +307,13 @@ for status in ['STABLE', 'WARNING', 'CRITICAL']:
             name=status,
             marker=dict(color=color_map[status], size=4, opacity=0.8),
             line=dict(color=color_map[status], width=0.5),
-            connectgaps=False,
+            connectgaps=True,
         ))
 
 fig_demand.update_layout(
     paper_bgcolor='#161B22', plot_bgcolor='#161B22',
     font=dict(color='white'),
-    title=dict(text='Grid Demand by Vulnerability Status - ERCOT Texas 2025',
+    title=dict(text='Last 24h Grid Demand' if live_mode else 'Grid Demand by Vulnerability Status - ERCOT Texas 2025',
                font=dict(color='white', size=14)),
     xaxis=dict(gridcolor='#30363D', color='#888'),
     yaxis=dict(gridcolor='#30363D', color='#888', title='Simulated Demand (MW)'),
@@ -326,6 +326,8 @@ st.plotly_chart(fig_demand, use_container_width=True)
 # SECTION 3 - PEAK RISK TIMELINE
 # ============================================================
 st.markdown("## Peak Risk Timeline")
+if live_mode:
+    st.info("Monthly trend requires full-year data. Showing hourly pattern only.")
 col_left, col_right = st.columns(2)
 
 with col_left:
@@ -441,7 +443,7 @@ fig_sim.update_layout(
     legend=dict(bgcolor='#1A1A2E', bordercolor='#333'),
     margin=dict(t=60, b=30),
 )
-fig_sim.update_xaxes(gridcolor='#30363D', color='#888')
+fig_sim.update_xaxes(gridcolor='#30363D', color='#888', tickformat="%H:%M")
 fig_sim.update_yaxes(gridcolor='#30363D', color='#888')
 
 y_min = min(day_data['optimized_demand_mw'].min(),
@@ -462,6 +464,7 @@ st.caption(
     "2.2% peak reduction across 25 Austin TX households. "
     "Grid Saver reduces peak demand by coordinating distributed HVAC loads during high-risk grid conditions."
 )
+st.caption("Reduction bars may not be visible at MW scale. Total load reduced across intervention windows: " + f"{df_view['grid_saver_reduction_mw'].sum():,.1f} MW.")
 
 if peak_event_original == peak_event_optimized:
     st.info(
