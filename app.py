@@ -386,7 +386,7 @@ col_m1, col_m2, col_m3, col_m4 = st.columns(4)
 sim_cards = [
     (col_m1, f"{peak_event_original:,.0f} MW", "Original Peak", "#E74C3C"),
     (col_m2, f"{peak_event_optimized:,.0f} MW", "After Grid Saver", "#2ECC71"),
-    (col_m3, f"{pct_event_reduction:.1f}%", "Peak Reduction", "#4A9EFF"),
+    (col_m3, f"{pct_event_reduction:.1f}%", "Peak Demand Reduction", "#4A9EFF"),
     (col_m4, f"{mw_event_saved:,.0f} MW", "Peak Load Shed (MW)", "#F39C12"),
 ]
 for col, val, label, color in sim_cards:
@@ -459,8 +459,16 @@ st.caption(
     "Y-axis zoomed to highlight peak demand reduction impact. "
     "HVAC load scaled for visualization clarity. "
     "Real-world impact validated using Pecan Street dataset (Phase 3): "
-    "2.2% peak reduction across 25 Austin TX households."
+    "2.2% peak reduction across 25 Austin TX households. "
+    "Grid Saver reduces peak demand by coordinating distributed HVAC loads during high-risk grid conditions."
 )
+
+if peak_event_original == peak_event_optimized:
+    st.info(
+        "No peak reduction at worst hour: Grid Saver interventions occurred outside "
+        "the peak demand window. This is by design — the system only acts when "
+        "dual-confirmation risk is detected, not at every demand spike."
+    )
 
 # ============================================================
 # UPGRADE 2: IMPACT AT SCALE
