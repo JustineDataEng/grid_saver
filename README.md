@@ -18,7 +18,7 @@ Validated using ERCOT (Texas) grid data, the same system that failed during the 
 
 | Layer | Function | Dataset | Status |
 |-------|----------|---------|--------|
-| SENSE | Detect grid stress signals | Electricity Maps US-TEX-ERCO 2025 | ✅ Phase 1 Complete |
+| SENSE | Detect grid vulnerability signals | Electricity Maps US-TEX-ERCO 2025 | ✅ Phase 1 Complete |
 | PREDICT | Forecast vulnerability windows 24hr ahead | PJM 145,367 hourly records | ✅ Phase 2 Complete |
 | ACT | Simulate coordinated 3-5% HVAC load reduction | Pecan Street Austin 15-min | ✅ Phase 3 Complete |
 
@@ -29,7 +29,7 @@ Validated using ERCOT (Texas) grid data, the same system that failed during the 
 ## Live Demo
 
 Interactive prototype demonstrating:
-- Real-time grid stress detection
+- Real-time grid vulnerability detection
 - Peak vulnerability window forecasting
 - HVAC load reduction simulation
 - Impact at Scale slider
