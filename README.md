@@ -19,7 +19,7 @@ Validated using ERCOT (Texas) grid data, the same system that failed during the 
 | Layer | Function | Dataset | Status |
 |-------|----------|---------|--------|
 | SENSE | Detect grid vulnerability signals | Electricity Maps US-TEX-ERCO 2025 | ✅ Phase 1 Complete |
-| PREDICT | Forecast vulnerability windows 24hr ahead | PJM 145,367 hourly records | ✅ Phase 2 Complete |
+| PREDICT | Forecast vulnerability windows 24hr ahead | PJM 32,896 hourly records | ✅ Phase 2 Complete |
 | ACT | Simulate coordinated 3-5% HVAC load reduction | Pecan Street Austin 15-min | ✅ Phase 3 Complete |
 
 **Full SPA Integration complete. All three layers connected into one unified pipeline.**
@@ -50,8 +50,8 @@ Interactive prototype demonstrating:
 - Peak vulnerability month: August | Peak vulnerability hour: 01:00 UTC
 
 **PREDICT Layer - Phase 2 (PJM Interconnection)**
-- XGBoost model trained on 32,897 hourly PJM records
-- Validated on 145,367 PJME records (Eastern region)
+- XGBoost model trained on 32,896 hourly PJM records
+- Validated on 145,366 PJME records (Eastern region)
 - Recall: 91.6% (catches 9 out of 10 real grid vulnerability events)
 - ROC-AUC: 0.977 (true 24-hour ahead forecasting)
 - Decision threshold: 0.4 (tuned for safety-first recall)
@@ -101,10 +101,10 @@ grid_saver/
 
 | Dataset | Records | Role |
 |---------|---------|------|
-| Electricity Maps US-TEX-ERCO 2025 | 8,761 hourly | Sense Layer |
-| PJM_Load_hourly.csv | 32,897 hourly | Predict Layer |
-| PJME_hourly.csv | 145,367 hourly | Validation |
-| Pecan Street Austin 15-min | 680K rows | Act Layer |
+| Electricity Maps US-TEX-ERCO 2025 | 8,760 hourly | Sense Layer |
+| PJM_Load_hourly.csv | 32,896 hourly | Predict Layer |
+| PJME_hourly.csv | 145,366 hourly | Validation |
+| Pecan Street Austin 15-min | 868,096 rows | Act Layer |
 | Ghana Energy Commission 2025 | 2000-2024 | Context |
 
 ---
