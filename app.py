@@ -344,7 +344,7 @@ with col_left:
                        annotation_font_color='#FF4444')
     fig_hour.update_layout(
         paper_bgcolor='#161B22', plot_bgcolor='#161B22', font=dict(color='white'),
-        title=dict(text='Avg Stress by Hour of Day', font=dict(color='white', size=13)),
+        title=dict(text='Avg Grid Vulnerability by Hour of Day', font=dict(color='white', size=13)),
         xaxis=dict(gridcolor='#30363D', color='#888', title='Hour (UTC)'),
         yaxis=dict(gridcolor='#30363D', color='#888', title='Vulnerability Score'),
         height=300, margin=dict(t=50, b=30),
@@ -366,7 +366,7 @@ with col_right:
         ))
         fig_daily.update_layout(
             paper_bgcolor='#161B22', plot_bgcolor='#161B22', font=dict(color='white'),
-            title=dict(text=f'Avg Daily Grid Stress - {selected_month}', font=dict(color='white', size=13)),
+            title=dict(text=f'Avg Daily Grid Vulnerability - {selected_month}', font=dict(color='white', size=13)),
             xaxis=dict(gridcolor='#30363D', color='#888', title='Date', tickangle=45),
             yaxis=dict(gridcolor='#30363D', color='#888', title='Vulnerability Score'),
             height=300, margin=dict(t=50, b=60),
@@ -384,7 +384,7 @@ with col_right:
         ))
         fig_month.update_layout(
             paper_bgcolor='#161B22', plot_bgcolor='#161B22', font=dict(color='white'),
-            title=dict(text='Avg Stress by Month', font=dict(color='white', size=13)),
+            title=dict(text='Avg Grid Vulnerability by Month', font=dict(color='white', size=13)),
             xaxis=dict(gridcolor='#30363D', color='#888', title='Month'),
             yaxis=dict(gridcolor='#30363D', color='#888', title='Vulnerability Score'),
             height=300, margin=dict(t=50, b=30),
