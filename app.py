@@ -286,7 +286,7 @@ else:
 # SECTION 2 - DEMAND GRAPH
 # ============================================================
 st.markdown("## Grid Demand and Vulnerability Windows")
-st.caption("⚠️ Demand values are simulated from carbon intensity for prototype demonstration purposes. Phase 2 Predict Layer uses real PJM load data (145,367 records).")
+st.caption("⚠️ Demand values are simulated from carbon intensity for prototype demonstration purposes. Phase 2 Predict Layer uses real PJM load data (32,896 records).")
 
 color_map = {'STABLE': '#2ECC71', 'WARNING': '#F39C12', 'CRITICAL': '#E74C3C'}
 fig_demand = go.Figure()
