@@ -354,6 +354,24 @@ with col_left:
 with col_right:
     if live_mode:
         st.info("Monthly trend requires full-year data. Switch to Analysis Mode to view seasonal patterns.")
+    elif selected_month != 'All Year':
+        daily_stress = df_view.groupby('date')['vulnerability_score'].mean().round(1)
+        daily_stress = daily_stress.sort_index()  # guarantee chronological order
+        daily_colors = ['#E74C3C' if s >= VULNERABILITY_THRESHOLD else
+                        '#F39C12' if s >= VULNERABILITY_THRESHOLD * 0.7 else
+                        '#2ECC71' for s in daily_stress.values]
+        fig_daily = go.Figure(go.Bar(
+            x=[d.strftime("%b %d") for d in daily_stress.index],
+            y=daily_stress.values, marker_color=daily_colors,
+        ))
+        fig_daily.update_layout(
+            paper_bgcolor='#161B22', plot_bgcolor='#161B22', font=dict(color='white'),
+            title=dict(text=f'Daily Grid Stress — {selected_month}', font=dict(color='white', size=13)),
+            xaxis=dict(gridcolor='#30363D', color='#888', title='Date', tickangle=45),
+            yaxis=dict(gridcolor='#30363D', color='#888', title='Vulnerability Score'),
+            height=300, margin=dict(t=50, b=60),
+        )
+        st.plotly_chart(fig_daily, use_container_width=True)
     else:
         monthly_stress = df_view.groupby('month_name')['vulnerability_score'].mean().round(1)
         month_order = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
