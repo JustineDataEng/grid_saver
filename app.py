@@ -366,7 +366,7 @@ with col_right:
         ))
         fig_daily.update_layout(
             paper_bgcolor='#161B22', plot_bgcolor='#161B22', font=dict(color='white'),
-            title=dict(text=f'Daily Grid Stress - {selected_month}', font=dict(color='white', size=13)),
+            title=dict(text=f'Avg Daily Grid Stress - {selected_month}', font=dict(color='white', size=13)),
             xaxis=dict(gridcolor='#30363D', color='#888', title='Date', tickangle=45),
             yaxis=dict(gridcolor='#30363D', color='#888', title='Vulnerability Score'),
             height=300, margin=dict(t=50, b=60),
@@ -454,7 +454,7 @@ fig_sim.add_hline(y=peak_event_original, line_dash='dot', line_color='#E74C3C',
 fig_sim.add_trace(go.Bar(
     x=day_data['Datetime (UTC)'],
     y=day_data['grid_saver_reduction_mw'] if apply_intervention else [0]*len(day_data),
-    name='Reduction (MW)', marker_color='#3498DB', opacity=0.7
+    name='Load Reduced (MW)', marker_color='#3498DB', opacity=0.7
 ), row=2, col=1)
 
 fig_sim.update_layout(
