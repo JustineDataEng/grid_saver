@@ -596,7 +596,7 @@ arch = [
     (col_c, "⚡", "ACT", "#7B1A1A", "#E74C3C",
      "Coordinate residential HVAC load reduction", "3-5% surgical precision ",
      "Pecan Street 868,096 records", "Human-override safety protocol",
-     "✅ ACTIVE - Phase 3 Complete", "#2ECC71"),
+     " ACTIVE - Phase 3 Complete", "#2ECC71"),
 ]
 
 for col, icon, title, bg, color, l1, l2, l3, l4, status, sc in arch:
