@@ -157,7 +157,6 @@ st.sidebar.markdown("**Stack**")
 st.sidebar.markdown("Colab + GitHub + Streamlit")
 st.sidebar.markdown("---")
 st.sidebar.markdown("*Justine Adzormado*")
-st.sidebar.markdown("*Red Bull Basement 2026*")
 
 # ============================================================
 # FILTER DATA
@@ -623,7 +622,7 @@ st.markdown("""
      border: 1px solid #30363D; text-align: center; margin-top: 20px;'>
     <p style='color: #888; margin: 0; font-size: 0.85rem;'>
         Grid Saver | Adaptive Grid Intelligence Platform |
-        Justine Adzormado | Red Bull Basement 2026 |
+        Justine Adzormado |
         Built with Colab + GitHub + Streamlit
     </p>
     <p style='color: #555; margin: 5px 0 0 0; font-size: 0.75rem;'>
