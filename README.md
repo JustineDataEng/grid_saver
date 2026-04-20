@@ -1,6 +1,6 @@
 # Grid Saver ⚡
 ### Adaptive Grid Intelligence Platform
-**Red Bull Basement 2026 | Justine Adzormado**
+**Justine Adzormado**
 
 > Preventing blackouts through predictive, distributed energy coordination and early vulnerability detection.
 
@@ -139,4 +139,4 @@ Because power grids operate within narrow reserve margins, even small, coordinat
 
 ---
 
-*Built for Red Bull Basement 2026*
+
