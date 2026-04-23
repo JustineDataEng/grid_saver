@@ -105,7 +105,8 @@ grid_saver/
 | PJM_Load_hourly.csv | 32,896 hourly | Predict Layer |
 | PJME_hourly.csv | 145,366 hourly | Validation |
 | Pecan Street Austin 15-min | 868,096 rows | Act Layer |
-| Ghana Energy Commission 2025 | 2000-2024 | Context |
+| IEA Electricity 2025 | 2020–2027 | Global demand statistics |
+| World Bank Enterprise Surveys | 2024 | Infrastructure disruption costs |
 
 ---
 
