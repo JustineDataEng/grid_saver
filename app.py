@@ -207,7 +207,7 @@ st.markdown(f"""
                 Adaptive Grid Intelligence Platform
             </p>
             <p style='color: #888; margin: 5px 0 0 0; font-size: 0.9rem;'>
-                Texas ERCOT 2025 | SPA Logic Validated — Cross-Dataset Simulation
+                Texas ERCOT 2025 | SPA Logic Validated - Cross-Dataset Simulation
             </p>
         </div>
         <div style='background: {mode_color}22; border: 2px solid {mode_color};
