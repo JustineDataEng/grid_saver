@@ -586,13 +586,16 @@ col_a, col_b, col_c = st.columns(3)
 arch = [
     (col_a, "👁️", "SENSE", "#1B4F8C", "#4A9EFF",
      "Detect grid vulnerability signals", "Carbon intensity monitoring",
-     "Electricity Maps US-TEX-ERCO", "8,760 hourly records"),
+     "Electricity Maps US-TEX-ERCO", "8,760 hourly records",
+     "✅ ACTIVE - Phase 1 ", "#2ECC71"),
     (col_b, "🧠", "PREDICT", "#1A6B2E", "#2ECC71",
      "Forecast vulnerability windows", "XGBoost model | 91.6% Recall",
-     "PJM 32,896 hourly records", "24-hour advance warning"),
+     "PJM 32,896 hourly records", "24-hour advance warning",
+     "✅ ACTIVE - Phase 2 Complete", "#2ECC71"),
     (col_c, "⚡", "ACT", "#7B1A1A", "#E74C3C",
      "Coordinate residential HVAC load reduction", "3-5% surgical precision ",
-     "Pecan Street 868,096 records", "Human-override safety protocol"),
+     "Pecan Street 868,096 records", "Human-override safety protocol",
+     "✅ ACTIVE - Phase 3 Complete", "#2ECC71"),
 ]
 
 for col, icon, title, bg, color, l1, l2, l3, l4, status, sc in arch:
